@@ -6,6 +6,9 @@ ARG VERSION
 
 WORKDIR /etc/tuic
 
+RUN if [ "$TARGETARCH" = "amd64" ]; then export TARGETARCH="x86_64"; fi \
+    && if [ "$TARGETARCH" = "arm64" ]; then export TARGETARCH="aarch64"; fi
+
 RUN wget https://github.com/EAimTY/tuic/releases/download/${VERSION}/${VERSION}-${TARGETARCH}-unknown-${TARGETOS}-musl \
     -O /usr/bin/tuic \
 &&  chmod +x /usr/bin/tuic
