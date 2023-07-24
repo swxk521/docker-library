@@ -43,8 +43,8 @@ jobs:
         context: tuic
         file: tuic/Dockerfile
         platforms: |
-          linux/x86_64
-          linux/aarch64
+          linux/amd64
+          linux/arm64
         push: true
         tags: |
           ${{ secrets.DOCKERHUB_USERNAME }}/tuic
