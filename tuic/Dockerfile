@@ -16,5 +16,7 @@ RUN if [ "$TARGETARCH" = "arm64" ]; then \
     -O /usr/bin/tuic \
     && chmod +x /usr/bin/tuic; fi
 
+COPY config.json /etc/tuic/
+
 ENTRYPOINT ["tuic"]
 CMD ["-c", "/etc/tuic/config.json"]
