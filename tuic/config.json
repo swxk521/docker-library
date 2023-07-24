@@ -1,0 +1,14 @@
+{
+  "server": "[::]:443",
+  "users": {
+    "3e7bc2a8-5107-4bf1-81cf-30bdc091ad4b": "qXINaU9KliBfjJ0g",
+    "72a32f5f-dd6e-4c5f-99a1-1249d0b29deb": "5adNteJe3LZRDS01"
+  },
+  "certificate": "/etc/tuic/fullchain.pem",
+  "private_key": "/etc/tuic/private.pem",
+  "congestion_control": "bbr",
+  "alpn": ["h3", "spdy/3.1"],
+  "dual_stack": true,
+  "max_idle_time": "300s",
+  "log_level": "info"
+}
