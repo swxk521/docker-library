@@ -1,5 +1,7 @@
 FROM debian
 
+ARG VERSION
+
 RUN set -ex; \
   apt update; \
   apt upgrade -y; \
@@ -8,7 +10,8 @@ RUN set -ex; \
     git \
   ; \
   mkdir -p "/usr/share"; \
-  git clone "https://github.com/wangyu-/udp2raw.git" "/usr/share/udp2raw"; \
+  curl -L https://codeload.github.com/wangyu-/udp2raw/tar.gz/$VERSION | tar -xzvfC "/usr/share"; \
+  mv "/usr/share/udp2raw-$VERSION" /usr/share/udp2raw; \
   cd "/usr/share/udp2raw"; \
   make; \
   strip -s udp2raw
