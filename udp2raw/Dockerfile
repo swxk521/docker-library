@@ -8,6 +8,7 @@ RUN set -ex; \
   apt install -y \
     build-essential \
     git \
+    curl \
   ; \
   mkdir -p "/usr/share"; \
   curl -L "https://codeload.github.com/wangyu-/udp2raw/tar.gz/$VERSION" | tar -xzC "/usr/share"; \
