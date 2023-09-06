@@ -10,8 +10,8 @@ RUN set -ex; \
     git \
   ; \
   mkdir -p "/usr/share"; \
-  curl -L https://codeload.github.com/wangyu-/udp2raw/tar.gz/$VERSION | tar -xzC "/usr/share"; \
-  mv "/usr/share/udp2raw-$VERSION" /usr/share/udp2raw; \
+  curl -L "https://codeload.github.com/wangyu-/udp2raw/tar.gz/$VERSION" | tar -xzC "/usr/share"; \
+  mv "/usr/share/udp2raw-$VERSION" "/usr/share/udp2raw"; \
   cd "/usr/share/udp2raw"; \
   make; \
   strip -s udp2raw
