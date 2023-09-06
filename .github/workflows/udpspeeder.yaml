@@ -22,7 +22,7 @@ jobs:
       env:
         DOCKER_CLI_EXPERIMENTAL: enabled
       run: |
-        export VERSION=$(curl https://api.github.com/repos/wangyu-/UDPspeeder/commits?per_page=1 | jq -r ".[0].sha" | head -c10)
+        export VERSION=$(curl https://api.github.com/repos/wangyu-/UDPspeeder/releases/latest | grep "tag_name" | cut -d\" -f4 | sed "s/^v//")
         docker manifest inspect ${{ secrets.DOCKERHUB_USERNAME }}/udpspeeder:${VERSION} > /dev/null && echo "" || echo "::set-output name=version::${VERSION}"
   publish:
     needs: update
