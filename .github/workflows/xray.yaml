@@ -43,8 +43,8 @@ jobs:
         context: xray
         file: xray/Dockerfile
         platforms: |
-          linux/64
-          linux/arm64-v8a
+          linux/amd64
+          linux/arm64
         push: true
         tags: |
           ${{ secrets.DOCKERHUB_USERNAME }}/xray
