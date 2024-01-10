@@ -1,4 +1,4 @@
-name: udp2raw
+name: xray
 
 on:
   push:
