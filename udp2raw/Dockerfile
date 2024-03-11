@@ -25,3 +25,5 @@ RUN RUN set -ex; \
     chmod +x /usr/bin/udp2raw
 ENV TZ=Asia/Shanghai
 ENTRYPOINT ["/usr/bin/udp2raw"]
+USER root
+
