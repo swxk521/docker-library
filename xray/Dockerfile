@@ -5,10 +5,11 @@ ARG TARGETARCH
 ARG VERSION
 
 WORKDIR /root
-COPY config.json /etc/xray/config.json
+RUN mkdir /root/xray/ /root/ssl/
+COPY config.json /root/xray/
+COPY server.cer server.key /root/ssl/
 RUN set -ex \
 	&& apk add --no-cache tzdata ca-certificates curl wget unzip \
-	&& mkdir -p /var/log/xray /usr/share/xray \
         && if [ "${TARGETARCH}" = "amd64" ]; then \
 	      TARGETARCH="64"; \
            elif [ "${TARGETARCH}" = "arm64" ]; then \
@@ -19,7 +20,7 @@ RUN set -ex \
 	&& wget -O /usr/share/xray/geosite.dat https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geosite.dat \
 	&& wget -O /usr/share/xray/geoip.dat https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geoip.dat
 
-VOLUME /etc/xray
+VOLUME /root/xray
+VOLUME /root/ssl
 ENV TZ=Asia/Shanghai
-ENTRYPOINT [ "/usr/bin/xray" ]
-CMD [ "-config", "/etc/xray/config.json" ]
+CMD [ "/usr/bin/xray", "-config", "/root/xray/config.json" ]
