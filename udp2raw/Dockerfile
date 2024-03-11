@@ -19,7 +19,6 @@ RUN set -ex; \
 
 
 FROM alpine:latest
-USER root
 COPY --from=builder /usr/share/udp2raw/udp2raw /usr/bin/
 RUN RUN set -ex; \
     apk add --no-cache iptables ip6tables; \
