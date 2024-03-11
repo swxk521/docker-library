@@ -1,4 +1,4 @@
-FROM alpine:latest AS builder
+FROM debian AS builder
 
 ARG VERSION
 
