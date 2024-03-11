@@ -4,9 +4,7 @@ ARG TARGETOS
 ARG TARGETARCH
 ARG VERSION
 
-
 WORKDIR /root
-user root
 RUN set -ex; \
   apk add --no-cache curl; \
   curl -L "https://github.com/xtaci/kcptun/releases/download/v${VERSION}/kcptun-${TARGETOS}-${TARGETARCH}-${VERSION}.tar.gz" | tar -xz; \
