@@ -22,7 +22,7 @@ jobs:
       env:
         DOCKER_CLI_EXPERIMENTAL: enabled
       run: |
-        export VERSION=$(curl -s https://api.github.com/repos/apernet/hysteria/releases | grep -m1 "tag_name" | cut -d\" -f4 | sed "s/^v//")
+        export VERSION=$(curl -s https://api.github.com/repos/apernet/hysteria/releases | grep -m1 "tag_name" | cut -d\" -f4 | sed "s/^v//" | sed -n "s/.*v\([0-9.]*\).*/\1/p")
         docker manifest inspect ${{ secrets.DOCKERHUB_USERNAME }}/hysteria:${VERSION} > /dev/null && echo "" || echo "::set-output name=version::${VERSION}"
   publish:
     needs: update
