@@ -1,0 +1,26 @@
+listen: :8443
+tls:
+  cert: /root/ssl/server.cer
+  key: /root/ssl/server.key
+ignoreClientBandwidth: true
+auth:
+  type: password
+  password: ****
+resolver:
+  type: https
+  https:
+    addr: 8.8.8.8:443
+    timeout: 5s
+acl:
+  inline:
+    - reject(all, udp/443)
+masquerade:
+  type: proxy
+  proxy:
+    url: ........
+    rewriteHost: true
+outbounds:
+  - name: xray
+    type: socks5
+    socks5:
+      addr: 127.0.0.1:1080
