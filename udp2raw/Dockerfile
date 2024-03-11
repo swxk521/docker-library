@@ -1,4 +1,4 @@
-FROM debian
+FROM debian AS builder
 
 ARG VERSION
 
@@ -18,14 +18,8 @@ RUN set -ex; \
   strip -s udp2raw
 
 
-FROM alpine
-
-COPY --from=0 /usr/share/udp2raw/udp2raw /bin/
-
-RUN set -ex; \
-  apk add --no-cache \
-    iptables \
-    ip6tables \
-  ;
-
-ENTRYPOINT ["/bin/udp2raw"]
+FROM alpine:latest
+COPY --from=builder /usr/share/udp2raw/udp2raw /usr/bin/
+RUN chmod +x /usr/bin/udp2raw
+ENV TZ=Asia/Shanghai
+ENTRYPOINT ["/usr/bin/udp2raw"]
