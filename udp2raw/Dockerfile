@@ -20,7 +20,7 @@ RUN set -ex; \
 
 FROM alpine:latest
 COPY --from=builder /usr/share/udp2raw/udp2raw /usr/bin/
-RUN RUN set -ex; \
+RUN set -ex; \
     apk add --no-cache iptables ip6tables; \
     chmod +x /usr/bin/udp2raw
 ENV TZ=Asia/Shanghai
