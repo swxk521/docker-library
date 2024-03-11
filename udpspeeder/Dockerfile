@@ -1,4 +1,4 @@
-FROM debian
+FROM alpine:latest AS builder
 
 ARG VERSION
 
@@ -18,8 +18,8 @@ RUN set -ex; \
   strip -s speederv2
 
 
-FROM scratch
-
-COPY --from=0 /usr/share/UDPspeeder/speederv2 /bin/
-
-ENTRYPOINT ["/bin/speederv2"]
+FROM alpine:latest
+COPY --from=builder /usr/share/UDPspeeder/speederv2 /usr/bin/
+RUN chmod +x /usr/bin/xray
+ENV TZ=Asia/Shanghai
+ENTRYPOINT ["/usr/bin/speederv2"]
