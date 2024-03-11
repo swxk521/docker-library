@@ -23,7 +23,7 @@ jobs:
         DOCKER_CLI_EXPERIMENTAL: enabled
       run: |
         export VERSION=$(curl -s https://api.github.com/repos/apernet/hysteria/releases | grep -m1 "tag_name" | cut -d\" -f4 | sed "s/^v//")
-        docker manifest inspect ${{ secrets.DOCKERHUB_USERNAME }}/xray:${VERSION} > /dev/null && echo "" || echo "::set-output name=version::${VERSION}"
+        docker manifest inspect ${{ secrets.DOCKERHUB_USERNAME }}/hysteria:${VERSION} > /dev/null && echo "" || echo "::set-output name=version::${VERSION}"
   publish:
     needs: update
     if: ${{ needs.update.outputs.version }}
