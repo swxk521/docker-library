@@ -4,15 +4,13 @@ ARG TARGETOS
 ARG TARGETARCH
 ARG VERSION
 
+
+WORKDIR /root
 RUN set -ex; \
   apk add --no-cache curl; \
-  mkdir -p "/usr/share/kcptun"; \
-  curl -L "https://github.com/xtaci/kcptun/releases/download/v${VERSION}/kcptun-${TARGETOS}-${TARGETARCH}-${VERSION}.tar.gz" | \
-    tar -xzC "/usr/share/kcptun"; \
-  mv "/usr/share/kcptun/client_${TARGETOS}_${TARGETARCH}" "/usr/share/kcptun/client"; \
-  mv "/usr/share/kcptun/server_${TARGETOS}_${TARGETARCH}" "/usr/share/kcptun/server"
-
-
-FROM scratch
-
-COPY --from=0 /usr/share/kcptun/client /usr/share/kcptun/server /bin/
+  curl -L "https://github.com/xtaci/kcptun/releases/download/v${VERSION}/kcptun-${TARGETOS}-${TARGETARCH}-${VERSION}.tar.gz" | tar -xz; \
+  mv "client_${TARGETOS}_${TARGETARCH}" /usr/bin/client; \
+  mv "server_${TARGETOS}_${TARGETARCH}" /usr/bin/server; \
+  chmod +x /usr/bin/client /usr/bin/server
+ENV TZ=Asia/Shanghai
+user root
