@@ -20,6 +20,6 @@ RUN set -ex; \
 
 FROM alpine:latest
 COPY --from=builder /usr/share/UDPspeeder/speederv2 /usr/bin/
-RUN chmod +x /usr/bin/speederv2
+RUN apk add --no-cache tzdata && chmod +x /usr/bin/speederv2
 ENV TZ=Asia/Shanghai
 ENTRYPOINT ["/usr/bin/speederv2"]
