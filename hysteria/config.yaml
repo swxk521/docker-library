@@ -2,22 +2,21 @@ listen: :8443
 tls:
   cert: /root/ssl/server.cer
   key: /root/ssl/server.key
-ignoreClientBandwidth: true
 auth:
   type: password
-  password: ****
+  password: xiaoye
 resolver:
-  type: https
-  https:
-    addr: 8.8.8.8:443
-    timeout: 5s
+  type: tcp
+  tcp:
+    addr: 8.8.8.8:53
+    timeout: 4s
 acl:
   inline:
     - reject(all, udp/443)
 masquerade:
   type: proxy
   proxy:
-    url: ........
+    url: https://www.apple.com
     rewriteHost: true
 outbounds:
   - name: xray
