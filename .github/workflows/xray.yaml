@@ -11,8 +11,6 @@ on:
 jobs:
   update:
     runs-on: ubuntu-latest
-    outputs:
-      version: ${{ steps.version.outputs.version }}
     steps:
     - uses: docker/login-action@v1
       with:
@@ -26,7 +24,7 @@ jobs:
         docker manifest inspect ${{ secrets.DOCKERHUB_USERNAME }}/xray:${VERSION} > /dev/null && echo "" || echo "version=${VERSION}" >> $GITHUB_ENV
   publish:
     needs: update
-    if: ${{ needs.update.outputs.version }}
+    if: ${{ env.version }}
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
