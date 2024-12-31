@@ -24,7 +24,7 @@ jobs:
         docker manifest inspect ${{ secrets.DOCKERHUB_USERNAME }}/xray:${VERSION} > /dev/null && echo "" || echo "version=${VERSION}" >> $GITHUB_ENV
   publish:
     needs: update
-    if: ${{ env.version }}
+    if: ${{ needs.update.outputs.version }}
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
