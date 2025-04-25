@@ -18,7 +18,7 @@ RUN set -ex; \
   strip -s speederv2
 
 
-FROM alpine:latest
+FROM alpine:3.18
 COPY --from=builder /usr/share/UDPspeeder/speederv2 /usr/bin/
 RUN apk add --no-cache tzdata && chmod +x /usr/bin/speederv2
 ENV TZ=Asia/Shanghai
