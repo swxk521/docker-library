@@ -18,7 +18,7 @@ RUN set -ex; \
   strip -s udp2raw
 
 
-FROM alpine:latest
+FROM alpine:3.18
 COPY --from=builder /usr/share/udp2raw/udp2raw /usr/bin/
 RUN apk add --no-cache tzdata iptables ip6tables && chmod +x /usr/bin/udp2raw
 ENV TZ=Asia/Shanghai
