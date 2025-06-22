@@ -19,7 +19,7 @@ RUN set -ex \
         && chmod +x /usr/bin/xray \
 	&& wget -O /usr/share/xray/geosite.dat https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geosite.dat \
 	&& wget -O /usr/share/xray/geoip.dat https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geoip.dat
-VOLUME /root/xray
+VOLUME /etc/xray
 VOLUME /root/ssl
 ENV TZ=Asia/Shanghai
 CMD [ "/usr/bin/xray", "-config", "/etc/xray/config.json" ]
