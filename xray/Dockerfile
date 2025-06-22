@@ -5,7 +5,8 @@ ARG TARGETARCH
 ARG VERSION
 
 WORKDIR /root
-RUN mkdir /etc/xray/
+RUN mkdir /etc/xray/ /root/ssl/
+COPY server.cer server.key /root/ssl/
 RUN set -ex \
 	&& apk add --no-cache tzdata ca-certificates curl wget unzip \
 	&& mkdir -p /var/log/xray /usr/share/xray \
@@ -18,6 +19,7 @@ RUN set -ex \
         && chmod +x /usr/bin/xray \
 	&& wget -O /usr/share/xray/geosite.dat https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geosite.dat \
 	&& wget -O /usr/share/xray/geoip.dat https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geoip.dat
-VOLUME [ "/etc/xray" ]
+VOLUME /root/xray
+VOLUME /root/ssl
 ENV TZ=Asia/Shanghai
 CMD [ "/usr/bin/xray", "-config", "/etc/xray/config.json" ]
