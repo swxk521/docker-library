@@ -22,7 +22,7 @@ jobs:
       env:
         DOCKER_CLI_EXPERIMENTAL: enabled
       run: |
-        export VERSION=$(curl -s https://api.github.com/repos/SagerNet/sing-box/releases | grep -m1 "tag_name" | cut -d\" -f4 | sed "s/^v//")
+        export VERSION=$(curl -s https://api.github.com/repos/SagerNet/sing-box/releases/latest | grep -m1 "tag_name" | cut -d\" -f4 | sed "s/^v//")
         docker manifest inspect ${{ secrets.DOCKERHUB_USERNAME }}/sing-box:${VERSION} > /dev/null && echo "" || echo "version=${VERSION}" >> $GITHUB_OUTPUT
   publish:
     needs: update
