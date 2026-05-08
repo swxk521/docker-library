@@ -6,7 +6,7 @@ ARG VERSION
 
 WORKDIR /root
 RUN mkdir /etc/tuic/ /root/ssl/
-COPY config.json /etc/tuic/
+COPY config.toml /etc/tuic/
 COPY server.cer server.key /root/ssl/
 
 RUN set -ex \
@@ -22,4 +22,4 @@ RUN set -ex \
 VOLUME /etc/tuic
 VOLUME /root/ssl
 ENV TZ=Asia/Shanghai
-CMD [ "/usr/bin/tuic-server", "-c", "/etc/tuic/config.json" ]
+CMD [ "/usr/bin/tuic-server", "-c", "/etc/tuic/config.toml" ]
