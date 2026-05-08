@@ -1,4 +1,4 @@
-name: frp
+name: tuic-server
 
 on:
   push:
