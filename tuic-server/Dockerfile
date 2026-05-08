@@ -16,7 +16,7 @@ RUN set -ex \
            elif [ "${TARGETARCH}" = "arm64" ]; then \
 	      TARGETARCH="aarch64"; \
            fi \
-        && curl -L "https://github.com/Itsusinn/tuic/releases/download/v${VERSION}/tuic-server-${TARGETARCH}-${TARGETOS}" -o /usr/bin/tuic-server \
+        && curl -L "https://github.com/Itsusinn/tuic/releases/download/v${VERSION}/tuic-server-${TARGETARCH}-${TARGETOS}-musl" -o /usr/bin/tuic-server \
         && chmod +x /usr/bin/tuic-server
 
 VOLUME /etc/tuic
