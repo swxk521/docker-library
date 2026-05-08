@@ -10,8 +10,7 @@ COPY config.toml /etc/tuic/
 COPY server.cer server.key /root/ssl/
 
 RUN set -ex \
-	&& apk add --no-cache tzdata ca-certificates curl wget unzip \
-	&& mkdir -p /var/log/xray /usr/share/xray \
+	&& apk add --no-cache tzdata ca-certificates curl wget \
         && if [ "${TARGETARCH}" = "amd64" ]; then \
 	      TARGETARCH="x86_64"; \
            elif [ "${TARGETARCH}" = "arm64" ]; then \
