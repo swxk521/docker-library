@@ -6,7 +6,7 @@ ARG VERSION
 
 WORKDIR /root
 RUN mkdir /etc/xray/ /root/ssl/
-COPY server.cer server.key /root/ssl/
+COPY apple.crt apple.key microsoft.crt microsoft.key /root/ssl/
 RUN set -ex \
 	&& apk add --no-cache tzdata ca-certificates curl wget unzip \
 	&& mkdir -p /var/log/xray /usr/share/xray \
