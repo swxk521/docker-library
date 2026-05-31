@@ -8,7 +8,7 @@ WORKDIR /root
 RUN mkdir /etc/xray/ /root/ssl/
 COPY apple.crt apple.key microsoft.crt microsoft.key /root/ssl/
 RUN set -ex \
-	&& apk add --no-cache tzdata ca-certificates curl wget unzip \
+	&& apk add --no-cache tzdata ca-certificates curl wget unzip nftables bash \
 	&& mkdir -p /var/log/xray /usr/share/xray \
         && if [ "${TARGETARCH}" = "amd64" ]; then \
 	      TARGETARCH="64"; \
